@@ -15,10 +15,14 @@ public class Number implements Expression{
 	public double evaluate() {
 		return this.value;
 	}
+
+	public double getValue() {
+		return value;
+	}
 	
 	@Override
-	public String toString() {
-		return Double.toString(value);
-	}
+    public void accept(ExpressionVisitor visitor) {
+        visitor.visit(this);
+    }
 	
 }

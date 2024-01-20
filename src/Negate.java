@@ -15,8 +15,14 @@ public class Negate implements Expression {
 	public double evaluate() {
 		return exp.evaluate() * -1;
 	}
+
+	@Override
+	public void accept(ExpressionVisitor visitor) {
+		visitor.visit(this);
+	}
 	
-	public String toString() {
-        return "(" +Double.toString(exp.evaluate()) + ")";
-    }
+	public Expression getExp() {
+		return exp;
+	}
+
 }

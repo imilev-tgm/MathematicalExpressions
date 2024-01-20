@@ -26,9 +26,20 @@ class BinaryExpression implements Expression {
                 throw new UnsupportedOperationException("Unsupported operator: " + operator);
         }
     }
-
+    
+    public Expression getLeft() {
+		return left;
+	}
+    public char getOperator() {
+		return operator;
+	}
+    public Expression getRight() {
+		return right;
+	}
+    
     @Override
-    public String toString() {
-        return "(" + left.toString() + " " + operator + " " + right.toString() + ")";
+    public void accept(ExpressionVisitor visitor) {
+        visitor.visit(this);
     }
+    
 }

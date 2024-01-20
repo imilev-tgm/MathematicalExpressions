@@ -4,6 +4,15 @@ class MinMaxExpression implements Expression {
     private String operation; // 'm' for min, 'M' for max
     private List<Expression> expressions;
 
+    
+    public String getOperation() {
+		return operation;
+	}
+    
+    public List<Expression> getExpressions() {
+		return expressions;
+	}
+    
     public MinMaxExpression(String operation, List<Expression> expressions) {
         this.operation = operation;
         this.expressions = expressions;
@@ -28,17 +37,9 @@ class MinMaxExpression implements Expression {
         }
         return result;
     }
-
+    
     @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder(operation.equalsIgnoreCase("min") ? "min(" : "max(");
-        for (int i = 0; i < expressions.size(); i++) {
-            builder.append(expressions.get(i).toString());
-            if (i < expressions.size() - 1) {
-                builder.append(", ");
-            }
-        }
-        builder.append(")");
-        return builder.toString();
+    public void accept(ExpressionVisitor visitor) {
+        visitor.visit(this);
     }
 }
